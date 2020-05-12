@@ -4,7 +4,15 @@ import platform
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import QWidget, QCompleter, QDialog, QApplication, QStyleOption, QStyle
+from PyQt5.QtWidgets import (
+    QWidget,
+    QCompleter,
+    QDialog,
+    QApplication,
+    QStyleOption,
+    QStyle,
+    QSizePolicy,
+)
 
 from structlog import get_logger
 
@@ -23,7 +31,7 @@ logger = get_logger()
 
 
 class GreyedDialog(QDialog, Ui_GreyedDialog):
-    def __init__(self, center_widget, title, parent, hide_close=False):
+    def __init__(self, center_widget, title, parent, hide_close=False, large=False):
         super().__init__(None)
         self.setupUi(self)
         self.setModal(True)
@@ -45,6 +53,11 @@ class GreyedDialog(QDialog, Ui_GreyedDialog):
             self.label_title.setText(title)
         if hide_close:
             self.button_close.hide()
+        if large:
+            self._get_spacer_top().changeSize(0, 100, QSizePolicy.Minimum, QSizePolicy.Minimum)
+            self._get_spacer_bottom().changeSize(0, 100, QSizePolicy.Minimum, QSizePolicy.Minimum)
+            self._get_spacer_right().changeSize(200, 0, QSizePolicy.Minimum, QSizePolicy.Minimum)
+            self._get_spacer_left().changeSize(200, 0, QSizePolicy.Minimum, QSizePolicy.Minimum)
         main_win = self._get_main_window()
         if main_win:
             if main_win.isVisible():
@@ -57,6 +70,18 @@ class GreyedDialog(QDialog, Ui_GreyedDialog):
             logger.error("GreyedDialog did not find the main window, this is probably a bug")
         self.setFocus()
         self.finished.connect(self.on_finished)
+
+    def _get_spacer_top(self):
+        return self.vertical_layout.itemAt(0).spacerItem()
+
+    def _get_spacer_bottom(self):
+        return self.vertical_layout.itemAt(2).spacerItem()
+
+    def _get_spacer_left(self):
+        return self.horizontal_layout.itemAt(0).spacerItem()
+
+    def _get_spacer_right(self):
+        return self.horizontal_layout.itemAt(2).spacerItem()
 
     def paintEvent(self, event):
         opt = QStyleOption()

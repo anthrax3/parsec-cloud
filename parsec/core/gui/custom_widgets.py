@@ -160,7 +160,6 @@ class ClickableLabel(QLabel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setCursor(QCursor(Qt.PointingHandCursor))
 
     def mousePressEvent(self, event):
         if event.button() & Qt.LeftButton:

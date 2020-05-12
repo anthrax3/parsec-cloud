@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>165</height>
+    <height>238</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -37,7 +37,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="vertical_layout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -54,7 +54,7 @@
     <number>0</number>
    </property>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="spacer_top">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -70,14 +70,17 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontal_layout">
      <property name="spacing">
       <number>0</number>
      </property>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="spacer_left">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -203,7 +206,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../rc/resources.qrc">
+                <iconset>
                  <normaloff>:/icons/images/material/close.svg</normaloff>:/icons/images/material/close.svg</iconset>
                </property>
                <property name="iconSize">
@@ -250,9 +253,12 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="spacer_right">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -265,7 +271,7 @@
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
+    <spacer name="spacer_bottom">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -289,9 +295,7 @@
    <header>parsec.core.gui.custom_widgets</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../rc/resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>button_close</sender>
